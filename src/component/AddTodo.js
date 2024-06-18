@@ -16,7 +16,7 @@ class AddTodo extends Component {
   handleChange = (event) => {
     this.setState({
       content: event.target.value,
-      date: Date().toLocaleString('en-US'),
+      date: new Date().toLocaleString('en-US'),
     });
   };
   // The handleSubmit function collects the forms input and puts it into the react state.
@@ -26,10 +26,13 @@ class AddTodo extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.content.trim()) {
-      this.props.addTodo(this.state);
+      this.props.addTodo({
+        content: this.state.content,
+        date: this.state.date, 
+      });
       this.setState({
         content: "",
-        date: "",
+        date: "", 
       });
     }
   };
