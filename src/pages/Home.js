@@ -14,7 +14,7 @@ class Home extends Component {
   // the addTodo function simply creates a new array that includes the user submitted todo item and then
   // updates the state with the new list.
   addTodo = (todo) => {
-    const taskExists = this.state.todos.find((t) => t.content == todo.content);
+    const taskExists = this.state.todos.find((t) => t.content === todo.content);
 
     if(taskExists) {
       return;
@@ -28,6 +28,10 @@ class Home extends Component {
     // Create a array that contains the current array and the new todo item
     let new_list = [...this.state.todos, todo];
     // Update the local state with the new array.
+    new_list = new_list.map(t => {
+      return {...t, content: t.content.trim() };
+    });
+
     this.setState({
       todos: new_list,
     });
