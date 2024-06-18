@@ -28,10 +28,6 @@ class Home extends Component {
     // Create a array that contains the current array and the new todo item
     let new_list = [...this.state.todos, todo];
     // Update the local state with the new array.
-    new_list = new_list.map(t => {
-      return {...t, content: t.content.trim() };
-    });
-
     this.setState({
       todos: new_list,
     });
@@ -49,11 +45,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <h1>Todo's </h1>
-        {/* When passing the AddTodo component, addTodo is a prop that is used in the 
-        AddTodo.js file when handling the submit */}
         <AddTodo addTodo={this.addTodo} />
-        {/* When returning the Todos component, todos is a prop passed to the todos.js file
-         to format and render the current todo list state */}
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}/>
       </div>
     );
